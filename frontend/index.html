@@ -1,0 +1,132 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>SNIP — Smart URL Shortener</title>
+  <link rel="preconnect" href="https://fonts.googleapis.com" />
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+  <link href="https://fonts.googleapis.com/css2?family=Syne:wght@400;700;800&family=Space+Mono:wght@400;700&display=swap" rel="stylesheet" />
+  <link rel="stylesheet" href="style.css" />
+</head>
+<body>
+
+  <!-- ░░ NOISE OVERLAY ░░ -->
+  <div class="noise"></div>
+
+  <!-- ░░ ANIMATED GRID BACKGROUND ░░ -->
+  <div class="grid-bg"></div>
+
+  <!-- ░░ FLOATING ORBS ░░ -->
+  <div class="orb orb-1"></div>
+  <div class="orb orb-2"></div>
+  <div class="orb orb-3"></div>
+
+  <!-- ░░ HEADER ░░ -->
+  <header class="header">
+    <div class="logo">
+      <span class="logo-bracket">[</span>SNIP<span class="logo-bracket">]</span>
+    </div>
+    <div class="header-tag">v1.0 · URL COMPRESSOR</div>
+  </header>
+
+  <!-- ░░ MAIN CONTENT ░░ -->
+  <main class="main">
+
+    <!-- Hero -->
+    <section class="hero">
+      <div class="hero-eyebrow">SMART URL SHORTENER</div>
+      <h1 class="hero-title">
+        COMPRESS.<br/>
+        <span class="hero-title-accent">TRACK.</span><br/>
+        SHARE.
+      </h1>
+      <p class="hero-subtitle">Transform bloated links into clean, trackable slugs. Get real-time click analytics out of the box.</p>
+    </section>
+
+    <!-- Shortener Card -->
+    <section class="card shorten-card">
+      <div class="card-label">01 — PASTE YOUR URL</div>
+
+      <div class="input-group">
+        <div class="input-wrapper">
+          <span class="input-icon">⌘</span>
+          <input
+            type="url"
+            id="urlInput"
+            class="url-input"
+            placeholder="https://your-very-long-url.com/path?query=value"
+            autocomplete="off"
+            spellcheck="false"
+          />
+        </div>
+        <button id="shortenBtn" class="btn-shorten" onclick="shortenURL()">
+          <span class="btn-text">SNIP IT</span>
+          <span class="btn-arrow">→</span>
+          <div class="btn-loader" id="btnLoader"></div>
+        </button>
+      </div>
+
+      <div class="error-msg" id="errorMsg"></div>
+    </section>
+
+    <!-- Result Card (hidden until success) -->
+    <section class="card result-card" id="resultCard">
+      <div class="card-label">02 — YOUR SHORT LINK</div>
+
+      <div class="result-row">
+        <div class="result-url-box">
+          <span class="result-icon">✦</span>
+          <a id="shortLinkDisplay" href="#" target="_blank" class="short-link-text"></a>
+        </div>
+        <button class="btn-copy" id="copyBtn" onclick="copyLink()">
+          <span id="copyLabel">COPY</span>
+        </button>
+      </div>
+
+      <div class="original-url-row">
+        <span class="orig-label">ORIGINAL</span>
+        <span class="orig-url" id="originalUrlDisplay"></span>
+      </div>
+    </section>
+
+    <!-- Analytics Card -->
+    <section class="card analytics-card" id="analyticsCard">
+      <div class="card-label">03 — ANALYTICS</div>
+
+      <div class="stats-grid">
+        <div class="stat-block">
+          <div class="stat-number" id="clickCount">0</div>
+          <div class="stat-label">TOTAL CLICKS</div>
+        </div>
+        <div class="stat-block">
+          <div class="stat-number stat-id" id="shortIdDisplay">—</div>
+          <div class="stat-label">SHORT ID</div>
+        </div>
+        <div class="stat-block stat-wide">
+          <div class="stat-number stat-date" id="createdAtDisplay">—</div>
+          <div class="stat-label">CREATED AT</div>
+        </div>
+      </div>
+
+      <button class="btn-refresh" onclick="refreshStats()">
+        <span id="refreshIcon">↻</span> REFRESH STATS
+      </button>
+    </section>
+
+    <!-- History Section -->
+    <section class="card history-card" id="historyCard" style="display:none;">
+      <div class="card-label">04 — RECENT SNIPS</div>
+      <div class="history-list" id="historyList"></div>
+    </section>
+
+  </main>
+
+  <!-- ░░ FOOTER ░░ -->
+  <footer class="footer">
+    <span>SNIP · SMART URL SHORTENER · BUILT WITH FASTAPI + SQLITE</span>
+  </footer>
+
+  <script src="script.js"></script>
+</body>
+</html>
